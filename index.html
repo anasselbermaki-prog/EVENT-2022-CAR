@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event 2022 Car - Location de Voitures Premium | Casablanca</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .phone-header {
+            background: #059669;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .phone-header:hover {
+            background: #047857;
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #fbbf24;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,58,138,0.9), rgba(59,130,246,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700"><rect fill="%231e3a8a" width="1200" height="700"/><circle fill="%233b82f6" cx="200" cy="200" r="100"/><circle fill="%23fbbf24" cx="800" cy="250" r="80"/><rect fill="%236b7280" x="500" y="450" width="200" height="120" rx="10"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-primary {
+            background: #fbbf24;
+            color: #1e3a8a;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #1e3a8a;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Fleet Section */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .car-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .car-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .car-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(30,58,138,0.8), rgba(59,130,246,0.8));
+            z-index: 1;
+        }
+
+        .car-image i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: white;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .car-info {
+            padding: 2rem;
+        }
+
+        .car-model {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #059669;
+            margin: 1rem 0;
+        }
+
+        .car-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Location Section */
+        .location-section {
+            background: #f8fafc;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .map-container {
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .location-info h3 {
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .phone-large {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            text-decoration: none;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-phone {
+            background: #059669;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .footer-phone:hover {
+            background: #047857;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .phone-header {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-car-side"></i>
+                Event 2022 Car
+            </div>
+            <a href="tel:+212669637287" class="phone-header">
+                <i class="fas fa-phone"></i>
+                06 69 63 72 87
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#fleet">Flotte</a></li>
+                <li><a href="#location">Localisation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Location de Voitures Premium</h1>
+            <p>Event 2022 Car vous offre les meilleurs véhicules pour tous vos déplacements. Qualité, confort et service exceptionnel garanti !</p>
+            <div class="cta-buttons">
+                <a href="#fleet" class="cta-button cta-primary">
+                    <i class="fas fa-car"></i> Voir la Flotte
+                </a>
+                <a href="tel:+212669637287" class="cta-button cta-secondary">
+                    <i class="fas fa-phone"></i> Appeler 06 69 63 72 87
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet">
+        <div class="container">
+            <h2>Notre Flotte Premium</h2>
+            <div class="fleet-grid">
+                <div class="car-card">
+                    <div class="car-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-model">Mercedes Classe C</div>
+                        <div class="car-price">49 DH/jour</div>
+                        <div class="car-features">
+                            <span class="feature">Automatique</span>
+                            <span class="feature">Climatisation</span>
+                            <span class="feature">GPS</span>
+                            <span class="feature">Assurance incluse</span>
+                        </div>
+                        <a href="tel:+212669637287" class="cta-button" style="width: 100%; justify-content: center; margin-top: 1rem;">Réserver Maintenant</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-model">BMW Série 3</div>
+                        <div class="car-price">59 DH/jour</div>
+                        <div class="car-features">
+                            <span class="feature">Automatique</span>
+                            <span class="feature">Toit Ouvrant</span>
+                            <span class="feature">Caméra 360°</span>
+                            <span class="feature">Sièges cuir</span>
+                        </div>
+                        <a href="tel:+212669637287" class="cta-button" style="width: 100%; justify-content: center; margin-top: 1rem;">Réserver Maintenant</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <i class="fas fa-sedan"></i>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-model">Audi A4</div>
+                        <div class="car-price">69 DH/jour</div>
+                        <div class="car-features">
+                            <span class="feature">Cuir Premium</span>
+                            <span class="feature">Sièges Chauffants</span>
+                            <span class="feature">Full Options</span>
+                            <span class="feature">GPS avancé</span>
+                        </div>
+                        <a href="tel:+212669637287" class="cta-button" style="width: 100%; justify-content: center; margin-top: 1rem;">Réserver Maintenant</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <div class="car-image">
+                        <i class="fas fa-truck-pickup"></i>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-model">SUV Premium</div>
+                        <div class="car-price">89 DH/jour</div>
+                        <div class="car-features">
+                            <span class="feature">7 Places</span>
+                            <span class="feature">4x4</span>
+                            <span class="feature">Bagages XL</span>
+                            <span class="feature">Tout inclus</span>
+                        </div>
+                        <a href="tel:+212669637287" class="cta-button" style="width: 100%; justify-content: center; margin-top: 1rem;">Réserver Maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 2rem;">Pourquoi choisir Event 2022 Car ?</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>+500</h3>
+                    <p>Clients Satisfaits</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Service Disponible</p>
+  </div>
